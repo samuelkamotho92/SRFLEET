@@ -17,11 +17,9 @@ import BlogList from "../components/UI/BlogList";
 const Home = () => {
   return (
     <Helmet title="Home">
-      {/* ============= hero section =========== */}
       <section className="p-0 hero__slider-section">
         <HeroSlider />
       </section>
-      {/* About */}
       <AboutSection />
       <section>
         <Container>
@@ -35,7 +33,6 @@ const Home = () => {
           </Row>
         </Container>
       </section>
-      {/* =========== car offer section ============= */}
       <section>
         <Container>
           <Row>
@@ -44,16 +41,13 @@ const Home = () => {
               <h2 className="section__title">Services/Products Prices</h2>
             </Col>
 
-            {carData.slice(0, 6).map((item) => (
+            {carData.map((item) => (
               <CarItem item={item} key={item.id} />
             ))}
           </Row>
         </Container>
       </section>
-      {/* =========== become a driver section ============ */}
       <BecomeDriverSection />
-
-      {/* =========== testimonial section =========== */}
       <section>
         <Container>
           <Row>
@@ -66,20 +60,6 @@ const Home = () => {
           </Row>
         </Container>
       </section>
-
-      {/* =============== blog section =========== */}
-      {/* <section>
-        <Container>
-          <Row>
-            <Col lg="12" className="mb-5 text-center">
-              <h6 className="section__subtitle">Explore our blogs</h6>
-              <h2 className="section__title">Latest Blogs</h2>
-            </Col>
-
-            <BlogList />
-          </Row>
-        </Container>
-      </section> */}
     </Helmet>
   );
 };

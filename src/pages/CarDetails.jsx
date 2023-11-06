@@ -1,110 +1,72 @@
 import React, { useEffect } from "react";
-
 import carData from "../assets/data/carData";
+import { insurances } from "../assets/data/insurance";
 import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import { useParams } from "react-router-dom";
-import BookingForm from "../components/UI/BookingForm";
-import PaymentMethod from "../components/UI/PaymentMethod";
-
+import './carDetails.css';
 const CarDetails = () => {
   const { slug } = useParams();
-
   const singleCarItem = carData.find((item) => item.serviceName === slug);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [singleCarItem]);
-
+  // style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
   return (
     <Helmet title={singleCarItem.serviceName}>
       <section>
         <Container>
           <Row>
-            <Col lg="6">
+            <Col lg="6" >
               <img src={singleCarItem.imgUrl} alt="" className="w-100" />
             </Col>
-
             <Col lg="6">
               <div className="car__info">
                 <h2 className="section__title">{singleCarItem.serviceName}</h2>
-
                 <p className="section__description">
                   {singleCarItem.description}
                 </p>
-
-                {/* <div
-                  className=" d-flex align-items-center mt-3"
-                  style={{ columnGap: "4rem" }}
-                >
-                  <span className=" d-flex align-items-center gap-1 section__description">
-                    <i
-                      class="ri-roadster-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {singleCarItem.model}
-                  </span>
-
-                  <span className=" d-flex align-items-center gap-1 section__description">
-                    <i
-                      class="ri-settings-2-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {singleCarItem.automatic}
-                  </span>
-
-                  <span className=" d-flex align-items-center gap-1 section__description">
-                    <i
-                      class="ri-timer-flash-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {singleCarItem.speed}
-                  </span>
-                </div> */}
-                {/* <div
-                  className=" d-flex align-items-center mt-3"
-                  style={{ columnGap: "2.8rem" }}
-                >
-                  <span className=" d-flex align-items-center gap-1 section__description">
-                    <i class="ri-map-pin-line" style={{ color: "#f9a826" }}></i>{" "}
-                    {singleCarItem.gps}
-                  </span>
-
-                  <span className=" d-flex align-items-center gap-1 section__description">
-                    <i
-                      class="ri-wheelchair-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {singleCarItem.seatType}
-                  </span>
-
-                  <span className=" d-flex align-items-center gap-1 section__description">
-                    <i
-                      class="ri-building-2-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {singleCarItem.brand}
-                  </span>
-                </div> */}
               </div>
             </Col>
-
-            {/* <Col lg="7" className="mt-5">
-              <div className="booking-info mt-5">
-                <h5 className="mb-4 fw-bold ">Booking Information</h5>
-                <BookingForm />
+            <Col lg='6' style={{ margin: "40px auto" }}>
+              <div className="car__info">
+                <p className="section__description">
+                  {singleCarItem.descriptionTwo}
+                </p>
               </div>
-            </Col> */}
-
-            {/* <Col lg="5" className="mt-5">
-              <div className="payment__info mt-5">
-                <h5 className="mb-4 fw-bold ">Payment Information</h5>
-                <PaymentMethod />
+            </Col>
+            <Col lg='6' style={{ margin: "40px auto" }}>
+              <div className="car__info">
+                <p className="section__description">
+                  {singleCarItem.descriptionThree}
+                </p>
               </div>
-            </Col> */}
+            </Col>
           </Row>
         </Container>
       </section>
+      {slug === 'Insurance services' && <h5 className="title">Insurances</h5>}
+      {
+        slug === 'Insurance services' && <section className="insuranceCont">
+
+          {
+            insurances.map((insurance, id) => (
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
+                    <img src={insurance?.image} alt={insurance?.name} style={{ width: "100%", height: "100%" }} />
+                  </div>
+                  <div className="flip-card-back">
+                    <h4>{insurance?.name} / {insurance?.swahiliName}</h4>
+                    <p>{insurance?.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </section>
+      }
+
     </Helmet>
   );
 };

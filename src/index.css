@@ -95,3 +95,18 @@ section {
     font-size: 1.1rem;
   }
 }
+.insuranceCont{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  margin: auto 10%;
+}
+.card{
+  display: center;
+  justify-content: center;
+  align-items: center;
+  margin: auto 5px;
+  width: 100%;
+}
